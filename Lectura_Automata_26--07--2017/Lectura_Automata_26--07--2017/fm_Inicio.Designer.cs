@@ -141,7 +141,7 @@
             this.btn_buscar_documento.UseVisualStyleBackColor = true;
             this.btn_buscar_documento.Click += new System.EventHandler(this.btn_buscar_documento_Click);
             // 
-            // Form1
+            // fm_Inicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -156,8 +156,8 @@
             this.Controls.Add(this.txt_path_documento);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "fm_Inicio";
+            this.Text = "Lectura de automata";
             this.ResumeLayout(false);
             this.PerformLayout();
 

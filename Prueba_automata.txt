@@ -1,4 +1,4 @@
-Q={AA,BB,C}
-E={a,b}
+Q = {A A, BB,CC,DD}
+E={a,b,c}
 i=A
-A={B}
+A={BB,DD}

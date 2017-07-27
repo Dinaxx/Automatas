@@ -11,19 +11,23 @@ namespace Lectura_Automata_26__07__2017
     class controlador_automata : Icontrolador_automata
     {
         #region variables
-        private Icontrolador_documento documento;
-        private List<String> estado_automata;
-        private List<String> elemento_alfabeto;
-        private String estado_inicial;
-        private List<String> estado_aceptacion;
+        private Icontrolador_documento  documento;
+        private List<String>            estado_automata;
+        private List<String>            elemento_alfabeto;
+        private String                  estado_inicial;
+        private List<String>            estado_aceptacion;
+        private const char              indicador_estado_automata = 'Q';
+        private const char              indicador_elemento_alfabeto = 'E';
+        private const char              indicador_estado_inicial = 'i';
+        private const char              indicador_estado_aceptacion = 'A';
         #endregion
 
         public controlador_automata(Icontrolador_documento documento)
         {
-            this.documento = documento;
-            this.estado_automata = null;
-            this.elemento_alfabeto = null;
-            this.estado_aceptacion = null;
+            this.documento          = documento;
+            this.estado_automata    = null;
+            this.elemento_alfabeto  = null;
+            this.estado_aceptacion  = null;
             obtener_lineas_documento();
         }
 
@@ -39,14 +43,14 @@ namespace Lectura_Automata_26__07__2017
                     {
                         if (!clasificaicon_linea(linea_documento))
                         {
-                            throw new System.ArgumentException("Error dentro del documento");
+                            throw new System.ArgumentException("La sintaxis del documento es incorrecta.\n");
                         }
                     }
                 }
             }
             catch (Exception e)
             {
-                MessageBox.Show("Error al intentar obtener el contenido del documento" + e.Message);
+                throw new System.ArgumentException("Ha ocurrido un error dentro del documento.\n" + e.Message);
             }
             #endregion
         }
@@ -56,7 +60,7 @@ namespace Lectura_Automata_26__07__2017
 
             switch (linea_documento[0])
             {
-                case 'Q':
+                case indicador_estado_automata:
                     {
                         if (!creaEstadosAutomata(linea_documento))
                         {
@@ -64,7 +68,7 @@ namespace Lectura_Automata_26__07__2017
                         }
                         break;
                     }
-                case 'E':
+                case indicador_elemento_alfabeto:
                     {
                         if (!creaElementosAlfabeto(linea_documento))
                         {
@@ -72,7 +76,7 @@ namespace Lectura_Automata_26__07__2017
                         }
                         break;
                     }
-                case 'i':
+                case indicador_estado_inicial:
                     {
                         if (!creaEstadoIncial(linea_documento))
                         {
@@ -80,7 +84,7 @@ namespace Lectura_Automata_26__07__2017
                         }
                         break;
                     }
-                case 'A':
+                case indicador_estado_aceptacion:
                     {
                         if (!creaEstadosAceptacion(linea_documento))
                         {
@@ -96,13 +100,21 @@ namespace Lectura_Automata_26__07__2017
             return true;
         }
 
+        #region Control Estados Automata
         private bool creaEstadosAutomata(String linea_documento)
         {
-            this.estado_automata = new List<string>();
-            string cadena_auxilia = "";
-            bool estado_inicial = true, busca_signo_igual = true, inicio_llave = false;
+            this.estado_automata    = new List<string>();
+            string cadena_auxilia   = "";
+            bool estado_inicial     = true
+                ,busca_signo_igual  = true
+                ,inicio_llave       = false;
+
             foreach(char letra_linea in linea_documento)
             {
+                if (letra_linea == ' ')
+                {
+                    continue;
+                }
                 if (estado_inicial)
                 {
                     estado_inicial = false;
@@ -142,7 +154,7 @@ namespace Lectura_Automata_26__07__2017
                     else if (letra_linea == '}')
                     {
                         this.estado_automata.Add(cadena_auxilia);
-                        break;
+                        return true;
                     }
                     else
                     {
@@ -151,25 +163,162 @@ namespace Lectura_Automata_26__07__2017
                         continue;
                     }
                 }
+                this.estado_automata = null;
                 return false;
             }
-            return true;
+            this.estado_automata = null;
+            return false;
         }
+        #endregion
 
+        #region Control Elementos Alfabeto
         private bool creaElementosAlfabeto(String linea_documento)
         {
-            return true;
-        }
+            this.elemento_alfabeto  = new List<string>();
+            string cadena_auxilia   = "";
+            bool estado_inicial     = true
+                ,busca_signo_igual  = true
+                ,inicio_llave       = false;
 
+            foreach(char letra_linea in linea_documento)
+            {
+                if (letra_linea == ' ')
+                {
+                    continue;
+                }
+                if (estado_inicial)
+                {
+                    estado_inicial = false;
+                    continue;
+                }
+                if(!estado_inicial && busca_signo_igual)
+                {
+                    if(letra_linea == '=')
+                    {
+                        busca_signo_igual = false;
+                        continue;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                if(!estado_inicial && !busca_signo_igual && !inicio_llave)
+                {
+                    if(letra_linea == '{')
+                    {
+                        inicio_llave = true;
+                        continue;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                if (inicio_llave)
+                {
+                    if(letra_linea != ',' && letra_linea != '}')
+                    {
+                        cadena_auxilia += letra_linea;
+                        continue;
+                    }
+                    else if(letra_linea == '}')
+                    {
+                        this.elemento_alfabeto.Add(cadena_auxilia);
+                        return true;
+                    }
+                    else
+                    {
+                        this.elemento_alfabeto.Add(cadena_auxilia);
+                        cadena_auxilia = "";
+                        continue;
+                    }
+                }
+                this.elemento_alfabeto = null;
+                return false;
+            }
+            this.elemento_alfabeto = null;
+            return false;
+        }
+        #endregion
+
+        #region Control Estado Inicial
         private bool creaEstadoIncial(String linea_documento)
         {
             return true;
         }
+        #endregion
 
+        #region Control estados aceptacion
         private bool creaEstadosAceptacion(String linea_documento)
         {
-            return true;
+            this.fn_estado_aceptacion = new List<string>();
+            string cadena_auxilia = "";
+            bool estado_inicial = true
+                , busca_signo_igual = true
+                , inicio_llave = false;
+
+            foreach(char letra_linea in linea_documento)
+            {
+                if (letra_linea == ' ')
+                {
+                    continue;
+                }
+                if (estado_inicial)
+                {
+                    estado_inicial = false;
+                    continue;
+                }
+                if(!estado_inicial && busca_signo_igual)
+                {
+                    if(letra_linea == '=')
+                    {
+                        busca_signo_igual = false;
+                        continue;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                if(!estado_inicial && !busca_signo_igual && !inicio_llave)
+                {
+                    if(letra_linea == '{')
+                    {
+                        inicio_llave = true;
+                        continue;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                if (inicio_llave)
+                {
+                    if(letra_linea != ',' && letra_linea != '}')
+                    {
+                        cadena_auxilia += letra_linea;
+                        continue;
+                    }
+                    else if(letra_linea == '}')
+                    {
+                        this.estado_aceptacion.Add(cadena_auxilia);
+                        return true;
+                    }
+                    else
+                    {
+                        this.estado_aceptacion.Add(cadena_auxilia);
+                        cadena_auxilia = "";
+                        continue;
+                    }
+                }
+                this.estado_aceptacion = null;
+                return false;
+            }
+            this.estado_aceptacion = null;
+            return false;
         }
+        #endregion
 
         #region Get y Set
         public Icontrolador_documento fn_documento

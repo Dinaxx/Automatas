@@ -65,6 +65,7 @@
             // 
             this.txt_contenido_documento.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.txt_contenido_documento.Cursor = System.Windows.Forms.Cursors.No;
+            this.txt_contenido_documento.Enabled = false;
             this.txt_contenido_documento.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_contenido_documento.Location = new System.Drawing.Point(43, 112);
             this.txt_contenido_documento.Multiline = true;
@@ -77,7 +78,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(626, 71);
+            this.label3.Location = new System.Drawing.Point(639, 71);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(172, 20);
             this.label3.TabIndex = 3;
@@ -107,30 +108,36 @@
             // 
             this.txt_elementos_alfabeto.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.txt_elementos_alfabeto.Cursor = System.Windows.Forms.Cursors.No;
+            this.txt_elementos_alfabeto.Enabled = false;
             this.txt_elementos_alfabeto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_elementos_alfabeto.Location = new System.Drawing.Point(630, 112);
+            this.txt_elementos_alfabeto.Location = new System.Drawing.Point(643, 112);
             this.txt_elementos_alfabeto.Multiline = true;
             this.txt_elementos_alfabeto.Name = "txt_elementos_alfabeto";
             this.txt_elementos_alfabeto.ReadOnly = true;
             this.txt_elementos_alfabeto.Size = new System.Drawing.Size(231, 512);
             this.txt_elementos_alfabeto.TabIndex = 6;
+            this.txt_elementos_alfabeto.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txt_estados_automata
             // 
-            this.txt_estados_automata.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.txt_estados_automata.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.txt_estados_automata.Cursor = System.Windows.Forms.Cursors.No;
+            this.txt_estados_automata.Enabled = false;
             this.txt_estados_automata.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_estados_automata.ForeColor = System.Drawing.SystemColors.Window;
             this.txt_estados_automata.Location = new System.Drawing.Point(369, 112);
             this.txt_estados_automata.Multiline = true;
             this.txt_estados_automata.Name = "txt_estados_automata";
             this.txt_estados_automata.ReadOnly = true;
-            this.txt_estados_automata.Size = new System.Drawing.Size(213, 512);
+            this.txt_estados_automata.Size = new System.Drawing.Size(229, 512);
             this.txt_estados_automata.TabIndex = 7;
+            this.txt_estados_automata.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txt_estados_aceptacion
             // 
             this.txt_estados_aceptacion.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.txt_estados_aceptacion.Cursor = System.Windows.Forms.Cursors.No;
+            this.txt_estados_aceptacion.Enabled = false;
             this.txt_estados_aceptacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_estados_aceptacion.Location = new System.Drawing.Point(917, 112);
             this.txt_estados_aceptacion.Multiline = true;
@@ -138,6 +145,7 @@
             this.txt_estados_aceptacion.ReadOnly = true;
             this.txt_estados_aceptacion.Size = new System.Drawing.Size(201, 512);
             this.txt_estados_aceptacion.TabIndex = 8;
+            this.txt_estados_aceptacion.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btn_seleccion_documento
             // 
@@ -178,7 +186,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "fm_Resultado";
-            this.Text = "Form2";
+            this.Text = "Lectura de automata";
             this.ResumeLayout(false);
             this.PerformLayout();
 

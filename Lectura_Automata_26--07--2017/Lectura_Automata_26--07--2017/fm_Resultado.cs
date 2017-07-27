@@ -19,11 +19,43 @@ namespace Lectura_Automata_26__07__2017
         {
             InitializeComponent();
             #region variables
-            this.automata = new controlador_automata(documento);
-            #endregion
-            foreach(String estados_automara in automata.fn_estado_automata)
+            try
             {
-                txt_estados_automata.Text += estados_automara + Environment.NewLine;
+                this.automata = new controlador_automata(documento);
+                #endregion
+                using (StreamReader lector = new StreamReader(this.automata.fn_documento.obtenerContenido))
+                {
+                    String linea_documento;
+                    while ((linea_documento = lector.ReadLine()) != null)
+                    {
+                        txt_contenido_documento.Text += linea_documento + Environment.NewLine;
+                    }
+                }
+                if (automata.fn_estado_automata != null)
+                {
+                    foreach (String estados_automara in automata.fn_estado_automata)
+                    {
+                        txt_estados_automata.Text += estados_automara + Environment.NewLine;
+                    }
+                }
+                if (automata.fn_elemento_alfabeto != null)
+                {
+                    foreach (String elementos_alfabeto in automata.fn_elemento_alfabeto)
+                    {
+                        txt_elementos_alfabeto.Text += elementos_alfabeto + Environment.NewLine;
+                    }
+                }
+                if(automata.fn_estado_aceptacion != null)
+                {
+                    foreach(String estados_aceptacion in automata.fn_estado_aceptacion)
+                    {
+                        txt_estados_aceptacion.Text += estados_aceptacion + Environment.NewLine;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show("Error: " + e.Message, "Error durante la ejecucion");
             }
         }
 

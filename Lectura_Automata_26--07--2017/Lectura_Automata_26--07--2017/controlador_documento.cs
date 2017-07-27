@@ -12,6 +12,7 @@ namespace Lectura_Automata_26__07__2017
     {
         private OpenFileDialog documento;
         private bool inicializado;
+
         public controlador_documento()
         {
             this.documento = new OpenFileDialog();
