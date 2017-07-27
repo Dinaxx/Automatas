@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace Lectura_Automata_26__07__2017
 {
-    public partial class Form1 : Form
+    public partial class fm_Resultado : Form
     {
-        public Form1()
+        public fm_Resultado()
         {
             InitializeComponent();
-        }
-
-        private void fileSystemWatcher1_Changed(object sender, System.IO.FileSystemEventArgs e)
-        {
-
         }
     }
 }

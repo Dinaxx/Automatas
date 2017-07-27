@@ -1,6 +1,6 @@
 ﻿namespace Lectura_Automata_26__07__2017
 {
-    partial class Form1
+    partial class fm_Inicio
     {
         /// <summary>
         /// Required designer variable.
@@ -33,10 +33,11 @@
             this.txt_path_documento = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lbl_nombre_documento = new System.Windows.Forms.Label();
             this.btn_seleccion_documento = new System.Windows.Forms.Button();
             this.btn_leer_automata = new System.Windows.Forms.Button();
             this.btn_salir = new System.Windows.Forms.Button();
+            this.btn_buscar_documento = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -63,7 +64,7 @@
             // 
             this.txt_path_documento.Location = new System.Drawing.Point(269, 114);
             this.txt_path_documento.Name = "txt_path_documento";
-            this.txt_path_documento.Size = new System.Drawing.Size(225, 20);
+            this.txt_path_documento.Size = new System.Drawing.Size(193, 20);
             this.txt_path_documento.TabIndex = 2;
             // 
             // label3
@@ -86,15 +87,15 @@
             this.label4.TabIndex = 4;
             this.label4.Text = "Selecconar documento mediante explorador de archivos";
             // 
-            // label5
+            // lbl_nombre_documento
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(202, 227);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(210, 20);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Ningun archivo seleccionado";
+            this.lbl_nombre_documento.AutoSize = true;
+            this.lbl_nombre_documento.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_nombre_documento.Location = new System.Drawing.Point(202, 227);
+            this.lbl_nombre_documento.Name = "lbl_nombre_documento";
+            this.lbl_nombre_documento.Size = new System.Drawing.Size(210, 20);
+            this.lbl_nombre_documento.TabIndex = 5;
+            this.lbl_nombre_documento.Text = "Ningun archivo seleccionado";
             // 
             // btn_seleccion_documento
             // 
@@ -105,6 +106,7 @@
             this.btn_seleccion_documento.TabIndex = 6;
             this.btn_seleccion_documento.Text = "Seleccionar documento";
             this.btn_seleccion_documento.UseVisualStyleBackColor = true;
+            this.btn_seleccion_documento.Click += new System.EventHandler(this.btn_seleccion_documento_Click);
             // 
             // btn_leer_automata
             // 
@@ -115,6 +117,7 @@
             this.btn_leer_automata.TabIndex = 7;
             this.btn_leer_automata.Text = "Leer automata";
             this.btn_leer_automata.UseVisualStyleBackColor = true;
+            this.btn_leer_automata.Click += new System.EventHandler(this.btn_leer_automata_Click);
             // 
             // btn_salir
             // 
@@ -125,16 +128,29 @@
             this.btn_salir.TabIndex = 8;
             this.btn_salir.Text = "Salir del programa";
             this.btn_salir.UseVisualStyleBackColor = true;
+            this.btn_salir.Click += new System.EventHandler(this.btn_salir_Click);
+            // 
+            // btn_buscar_documento
+            // 
+            this.btn_buscar_documento.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_buscar_documento.Location = new System.Drawing.Point(468, 105);
+            this.btn_buscar_documento.Name = "btn_buscar_documento";
+            this.btn_buscar_documento.Size = new System.Drawing.Size(147, 30);
+            this.btn_buscar_documento.TabIndex = 9;
+            this.btn_buscar_documento.Text = "Buscar documento";
+            this.btn_buscar_documento.UseVisualStyleBackColor = true;
+            this.btn_buscar_documento.Click += new System.EventHandler(this.btn_buscar_documento_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(627, 339);
+            this.Controls.Add(this.btn_buscar_documento);
             this.Controls.Add(this.btn_salir);
             this.Controls.Add(this.btn_leer_automata);
             this.Controls.Add(this.btn_seleccion_documento);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.lbl_nombre_documento);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txt_path_documento);
@@ -154,10 +170,11 @@
         private System.Windows.Forms.TextBox txt_path_documento;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lbl_nombre_documento;
         private System.Windows.Forms.Button btn_seleccion_documento;
         private System.Windows.Forms.Button btn_leer_automata;
         private System.Windows.Forms.Button btn_salir;
+        private System.Windows.Forms.Button btn_buscar_documento;
     }
 }
 
