@@ -40,7 +40,7 @@ namespace Lectura_Automata_26__07__2017
             if (this.file.inicializacion)
             {
                 this.Visible = false;
-                fm_Resultado form_resultado = new fm_Resultado();
+                fm_Resultado form_resultado = new fm_Resultado(this.file);
                 form_resultado.Show();
             }
             else

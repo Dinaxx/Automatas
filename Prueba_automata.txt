@@ -1,1 +1,4 @@
-doc
+Q={AA,BB,C}
+E={a,b}
+i=A
+A={B}

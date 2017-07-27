@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,34 +10,61 @@ namespace Lectura_Automata_26__07__2017
 {
     class controlador_documento : Icontrolador_documento
     {
-        private OpenFileDialog File;
+        private OpenFileDialog documento;
         private bool inicializado;
         public controlador_documento()
         {
-            File = new OpenFileDialog();
+            this.documento = new OpenFileDialog();
             inicializado = false;
         }
 
+        #region Get Set
         public OpenFileDialog Files
         {
             get
             {
-                return this.File;
+                return this.documento;
             }
             set
             {
-                this.File = value;
+                this.documento = value;
             }
         }
+        public String NombreDocumento
+        {
+            get
+            {
+                return this.documento.FileName;
+            }
+            set
+            {
+                this.documento.FileName = value;
+            }
+        }
+        public bool inicializacion
+        {
+            get
+            {
+                return this.inicializado;
+            }
+        }
+        public Stream obtenerContenido
+        {
+            get
+            {
+                return this.documento.OpenFile();
+            }
+        }
+        #endregion
 
         public void obtenerDocumentoSelector()
         {
-            this.File.Title = "Seleccion de documento";
-            this.File.InitialDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            this.File.Filter = "All files (*.*)|*.*|Documento de texto (*.txt)|*.txt";
-            this.File.FilterIndex = 2;
-            this.File.RestoreDirectory = true;
-            if (this.File.ShowDialog() == DialogResult.OK)
+            this.documento.Title = "Seleccion de documento";
+            this.documento.InitialDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            this.documento.Filter = "All files (*.*)|*.*|Documento de texto (*.txt)|*.txt";
+            this.documento.FilterIndex = 2;
+            this.documento.RestoreDirectory = true;
+            if (this.documento.ShowDialog() == DialogResult.OK)
             {
                 this.inicializado = true;
             }
@@ -47,23 +75,5 @@ namespace Lectura_Automata_26__07__2017
 
         }
 
-        public String NombreDocumento
-        {
-            get
-            {
-                return this.File.FileName;
-            }
-            set
-            {
-                this.File.FileName = value;
-            }
-        }
-        public bool inicializacion
-        {
-            get
-            {
-                return this.inicializado;
-            }
-        }
     }
 }

@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="controlador_automata.cs" />
     <Compile Include="controlador_documento.cs" />
     <Compile Include="fm_Inicio.cs">
       <SubType>Form</SubType>
@@ -59,11 +60,15 @@
     <Compile Include="fm_Resultado.Designer.cs">
       <DependentUpon>fm_Resultado.cs</DependentUpon>
     </Compile>
+    <Compile Include="Icontrolador_automata.cs" />
     <Compile Include="Icontrolador_documento.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="fm_Inicio.resx">
       <DependentUpon>fm_Inicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fm_Resultado.resx">
+      <DependentUpon>fm_Resultado.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
