@@ -59,7 +59,8 @@ public class control_automata implements Icontrol_automata {
                         break;
                     }
                     case ind_estado_aceptacion:{
-                        
+                        validaEstadosAceptacion(linea_documento);
+                        break;
                     }
                 }
             }
