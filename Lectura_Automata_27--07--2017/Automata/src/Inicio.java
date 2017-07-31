@@ -1,6 +1,8 @@
 
 import control_documento.Icontrol_documento;
 import control_documento.control_documento;
+import javax.swing.JPanel;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -62,6 +64,11 @@ public class Inicio extends javax.swing.JFrame {
 
         btn_leer_automata.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btn_leer_automata.setText("Leer automata");
+        btn_leer_automata.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_leer_automataActionPerformed(evt);
+            }
+        });
 
         btn_salir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btn_salir.setText("Salir del programa");
@@ -85,12 +92,12 @@ public class Inicio extends javax.swing.JFrame {
                                 .addComponent(btn_seleccion_documento)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(lbl_nombre_documento)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btn_salir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_leer_automata)
-                        .addContainerGap())))
+                        .addComponent(btn_leer_automata)))
+                .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(205, 205, 205)
                 .addComponent(jLabel1)
@@ -136,6 +143,16 @@ public class Inicio extends javax.swing.JFrame {
         documento.seleccionDocumento(this.jPanel1);
         lbl_nombre_documento.setText(this.documento.getNombreDocumento());
     }//GEN-LAST:event_btn_seleccion_documentoActionPerformed
+
+    private void btn_leer_automataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_leer_automataActionPerformed
+        if(this.documento.getDocumento() != null){
+            this.setVisible(false);
+            resultado result = new resultado();
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un documento para poder proceder la operacion.");
+        }
+    }//GEN-LAST:event_btn_leer_automataActionPerformed
 
     /**
      * @param args the command line arguments
