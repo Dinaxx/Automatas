@@ -35,13 +35,21 @@ public class Inicio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btn_salir = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btn_seleccion_documento = new javax.swing.JButton();
         lbl_nombre_documento = new javax.swing.JLabel();
         btn_leer_automata = new javax.swing.JButton();
-        btn_salir = new javax.swing.JButton();
+
+        btn_salir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btn_salir.setText("Salir del programa");
+        btn_salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_salirActionPerformed(evt);
+            }
+        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,14 +78,6 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btn_salir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btn_salir.setText("Salir del programa");
-        btn_salir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_salirActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -94,8 +94,7 @@ public class Inicio extends javax.swing.JFrame {
                                 .addComponent(lbl_nombre_documento)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btn_salir)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btn_leer_automata)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -115,9 +114,7 @@ public class Inicio extends javax.swing.JFrame {
                     .addComponent(btn_seleccion_documento)
                     .addComponent(lbl_nombre_documento))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_salir)
-                    .addComponent(btn_leer_automata))
+                .addComponent(btn_leer_automata)
                 .addGap(33, 33, 33))
         );
 
@@ -146,8 +143,10 @@ public class Inicio extends javax.swing.JFrame {
 
     private void btn_leer_automataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_leer_automataActionPerformed
         if(this.documento.getDocumento() != null){
+            Resultado resultado = new Resultado();
+            resultado.setDocumento(this.documento);
+            resultado.setVisible(true);
             this.setVisible(false);
-            resultado result = new resultado();
         }
         else{
             JOptionPane.showMessageDialog(null, "Debe seleccionar un documento para poder proceder la operacion.");
