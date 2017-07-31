@@ -111,7 +111,7 @@ namespace Lectura_Automata_26__07__2017
 
             foreach(char letra_linea in linea_documento)
             {
-                if (letra_linea == ' ')
+                if (letra_linea == ' ' || letra_linea == '\t')
                 {
                     continue;
                 }
@@ -182,7 +182,7 @@ namespace Lectura_Automata_26__07__2017
 
             foreach(char letra_linea in linea_documento)
             {
-                if (letra_linea == ' ')
+                if (letra_linea == ' ' || letra_linea == '\t')
                 {
                     continue;
                 }
@@ -249,7 +249,7 @@ namespace Lectura_Automata_26__07__2017
                 , busca_signo_igual = true;
             foreach(char letra_linea in linea_documento)
             {
-                if(letra_linea == ' ')
+                if (letra_linea == ' ' || letra_linea == '\t')
                 {
                     continue;
                 }
@@ -298,7 +298,7 @@ namespace Lectura_Automata_26__07__2017
 
             foreach(char letra_linea in linea_documento)
             {
-                if (letra_linea == ' ')
+                if (letra_linea == ' ' || letra_linea == '\t')
                 {
                     continue;
                 }
