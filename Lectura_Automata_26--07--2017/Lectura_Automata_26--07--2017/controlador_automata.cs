@@ -245,6 +245,44 @@ namespace Lectura_Automata_26__07__2017
         #region Control Estado Inicial
         private bool creaEstadoIncial(String linea_documento)
         {
+            bool estado_inicial = true
+                , busca_signo_igual = true;
+            foreach(char letra_linea in linea_documento)
+            {
+                if(letra_linea == ' ')
+                {
+                    continue;
+                }
+                if (estado_inicial)
+                {
+                    estado_inicial = false;
+                    continue;
+                }
+                if(!estado_inicial && busca_signo_igual)
+                {
+                    if(letra_linea == '=')
+                    {
+                        busca_signo_igual = false;
+                        continue;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                if(!estado_inicial && !busca_signo_igual)
+                {
+                    if(letra_linea == ',' || letra_linea == '{' || letra_linea == '}')
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+                return false;
+            }
             return true;
         }
         #endregion
