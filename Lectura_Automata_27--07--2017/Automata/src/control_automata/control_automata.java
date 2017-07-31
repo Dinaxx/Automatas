@@ -23,6 +23,7 @@ public class control_automata implements Icontrol_automata {
     private String contenido_documento;
     private final char ind_estado_automata = 'Q';
     private final char ind_elemento_alfabeto = 'E';
+    private final char ind_estado_inicial = 'i';
     private final char ind_estado_aceptacion = 'A';
     
     
@@ -44,11 +45,44 @@ public class control_automata implements Icontrol_automata {
         try(BufferedReader lector = new BufferedReader(new FileReader(this.documento.getDocumento()))){
             for(String linea_documento; (linea_documento = lector.readLine()) != null;){
                 this.contenido_documento += linea_documento + '\n';
+                switch(linea_documento.charAt(0)){
+                    case ind_estado_automata:{
+                        validaEstadosAutomata(linea_documento);
+                        break;
+                    }
+                    case ind_elemento_alfabeto:{
+                        validaElementosAlfabeto(linea_documento);
+                        break;
+                    }
+                    case ind_estado_inicial:{
+                        validaEstadoInicial(linea_documento);
+                        break;
+                    }
+                    case ind_estado_aceptacion:{
+                        
+                    }
+                }
             }
         }
         catch(Exception e){
             throw new IllegalArgumentException("\nError en la lectura del documento.\n" + e.getMessage());
         }
+    }
+    
+    private void validaEstadosAutomata(String linea_documento){
+        
+    }
+    
+    private void validaElementosAlfabeto(String linea_documento){
+        
+    }
+    
+    private void validaEstadoInicial(String linea_documento){
+        
+    }
+    
+    private void validaEstadosAceptacion(String linea_documento){
+        
     }
     
     @Override
