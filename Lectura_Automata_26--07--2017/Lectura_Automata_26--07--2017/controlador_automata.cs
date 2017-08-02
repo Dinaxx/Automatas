@@ -41,10 +41,7 @@ namespace Lectura_Automata_26__07__2017
                     String linea_documento;
                     while ((linea_documento = lector.ReadLine()) != null)
                     {
-                        if (!clasificaicon_linea(linea_documento))
-                        {
-                            throw new System.ArgumentException("La sintaxis del documento es incorrecta.\n");
-                        }
+                        clasificaicon_linea(linea_documento);
                     }
                 }
             }
@@ -55,53 +52,46 @@ namespace Lectura_Automata_26__07__2017
             #endregion
         }
 
-        private bool clasificaicon_linea(String linea_documento)
+        private void clasificaicon_linea(String linea_documento)
         {
-
-            switch (linea_documento[0])
+            try
             {
-                case indicador_estado_automata:
-                    {
-                        if (!creaEstadosAutomata(linea_documento))
+                switch (linea_documento[0])
+                {
+                    case indicador_estado_automata:
                         {
-                            return false;
+                            creaEstadosAutomata(linea_documento);
+                            break;
                         }
-                        break;
-                    }
-                case indicador_elemento_alfabeto:
-                    {
-                        if (!creaElementosAlfabeto(linea_documento))
+                    case indicador_elemento_alfabeto:
                         {
-                            return false;
+                            creaElementosAlfabeto(linea_documento);
+                            break;
                         }
-                        break;
-                    }
-                case indicador_estado_inicial:
-                    {
-                        if (!creaEstadoIncial(linea_documento))
+                    case indicador_estado_inicial:
                         {
-                            return false;
+                            creaEstadoIncial(linea_documento);
+                            break;
                         }
-                        break;
-                    }
-                case indicador_estado_aceptacion:
-                    {
-                        if (!creaEstadosAceptacion(linea_documento))
+                    case indicador_estado_aceptacion:
                         {
-                            return false;
+                            creaEstadosAceptacion(linea_documento);
+                            break;
                         }
-                        break;
-                    }
-                default:
-                    {
-                        return false;
-                    }
+                    default:
+                        {
+                            throw new ArgumentException("\nSe ha encontrado un caracter no definido.");
+                        }
+                }
             }
-            return true;
+            catch(Exception e)
+            {
+                throw new ArgumentException("\nError en la clasificacion del documento.\n" + e.Message);
+            }
         }
 
         #region Control Estados Automata
-        private bool creaEstadosAutomata(String linea_documento)
+        private void creaEstadosAutomata(String linea_documento)
         {
             this.estado_automata    = new List<string>();
             string cadena_auxilia   = "";
@@ -129,7 +119,7 @@ namespace Lectura_Automata_26__07__2017
                     }
                     else
                     {
-                        return false;
+                        throw new ArgumentException("\n No se ha encontrado el signo '=' en los estados del automata.\n");
                     }
                 }
                 if(!estado_inicial && !busca_signo_igual && !inicio_llave)
@@ -141,20 +131,20 @@ namespace Lectura_Automata_26__07__2017
                     }
                     else
                     {
-                        return false;
+                        throw new ArgumentException("No se ha encontrado el signo '{' en los estados del automata.\n");
                     }
                 }
                 if(inicio_llave)
                 {
-                    if(letra_linea != ',' && letra_linea != '}')
+                    if(letra_linea != ',' && letra_linea != '}' && letra_linea != '\n')
                     {
                         cadena_auxilia += letra_linea;
                         continue;
                     }
-                    else if (letra_linea == '}')
+                    else if (letra_linea == '}' || letra_linea == '\n')
                     {
                         this.estado_automata.Add(cadena_auxilia);
-                        return true;
+                        return;
                     }
                     else
                     {
@@ -163,16 +153,16 @@ namespace Lectura_Automata_26__07__2017
                         continue;
                     }
                 }
-                this.estado_automata = null;
-                return false;
+                //this.estado_automata = null;
+                throw new ArgumentException("\nNo se ha encontrado el signo '}' en los estados del automata,\n");
             }
             this.estado_automata = null;
-            return false;
+            throw new ArgumentException("\nHa ocurrido un error inesperado en los estados del automata.\n");
         }
         #endregion
 
         #region Control Elementos Alfabeto
-        private bool creaElementosAlfabeto(String linea_documento)
+        private void creaElementosAlfabeto(String linea_documento)
         {
             this.elemento_alfabeto  = new List<string>();
             string cadena_auxilia   = "";
@@ -200,7 +190,7 @@ namespace Lectura_Automata_26__07__2017
                     }
                     else
                     {
-                        return false;
+                        throw new ArgumentException("\nNo se ha encontrado el signo '=' en los elementos del alfabeto.\n");
                     }
                 }
                 if(!estado_inicial && !busca_signo_igual && !inicio_llave)
@@ -212,20 +202,20 @@ namespace Lectura_Automata_26__07__2017
                     }
                     else
                     {
-                        return false;
+                        throw new ArgumentException("\nNo se ha encontrado el signo '{' en los elementos del alfabeto.\n");
                     }
                 }
                 if (inicio_llave)
                 {
-                    if(letra_linea != ',' && letra_linea != '}')
+                    if(letra_linea != ',' && letra_linea != '}' && letra_linea != '\n')
                     {
                         cadena_auxilia += letra_linea;
                         continue;
                     }
-                    else if(letra_linea == '}')
+                    else if(letra_linea == '}' || letra_linea == '\n')
                     {
                         this.elemento_alfabeto.Add(cadena_auxilia);
-                        return true;
+                        return;
                     }
                     else
                     {
@@ -234,16 +224,16 @@ namespace Lectura_Automata_26__07__2017
                         continue;
                     }
                 }
-                this.elemento_alfabeto = null;
-                return false;
+                //this.elemento_alfabeto = null;
+                throw new ArgumentException("\nNo se ha encontrado el signo '}' en los elementos del alfabeto.\n");
             }
             this.elemento_alfabeto = null;
-            return false;
+            throw new ArgumentException("\nHa ocurrido un error inesperado en los elementos del alfabeto.\n");
         }
         #endregion
 
         #region Control Estado Inicial
-        private bool creaEstadoIncial(String linea_documento)
+        private void creaEstadoIncial(String linea_documento)
         {
             bool estado_inicial = true
                 , busca_signo_igual = true;
@@ -267,28 +257,28 @@ namespace Lectura_Automata_26__07__2017
                     }
                     else
                     {
-                        return false;
+                        throw new ArgumentException("\nNo se ha encontrado el signo '=' en el estado inicial del automata.\n");
                     }
                 }
                 if(!estado_inicial && !busca_signo_igual)
                 {
                     if(letra_linea == ',' || letra_linea == '{' || letra_linea == '}')
                     {
-                        return false;
+                        throw new ArgumentException("\nSe encontraron signos que no eran pertenecientes al estado inicial del automata.\n");
                     }
                     else
                     {
                         continue;
                     }
                 }
-                return false;
+                throw new ArgumentException("\nHa ocurrido un error inesperado en el estado inicial del automata.\n");
             }
-            return true;
+            return;
         }
         #endregion
 
         #region Control estados aceptacion
-        private bool creaEstadosAceptacion(String linea_documento)
+        private void creaEstadosAceptacion(String linea_documento)
         {
             this.fn_estado_aceptacion = new List<string>();
             string cadena_auxilia = "";
@@ -316,7 +306,7 @@ namespace Lectura_Automata_26__07__2017
                     }
                     else
                     {
-                        return false;
+                        throw new ArgumentException("\nNo se ha encontrado el signo '=' en los estados de aceptacion del automata.\n");
                     }
                 }
                 if(!estado_inicial && !busca_signo_igual && !inicio_llave)
@@ -328,20 +318,20 @@ namespace Lectura_Automata_26__07__2017
                     }
                     else
                     {
-                        return false;
+                        throw new ArgumentException("\nNo se ha encontrado el signo '{' en los estados de aceptacion del automata.\n");
                     }
                 }
                 if (inicio_llave)
                 {
-                    if(letra_linea != ',' && letra_linea != '}')
+                    if(letra_linea != ',' && letra_linea != '}' && letra_linea != '\n')
                     {
                         cadena_auxilia += letra_linea;
                         continue;
                     }
-                    else if(letra_linea == '}')
+                    else if(letra_linea == '}' || letra_linea == '\n')
                     {
                         this.estado_aceptacion.Add(cadena_auxilia);
-                        return true;
+                        return;
                     }
                     else
                     {
@@ -350,11 +340,11 @@ namespace Lectura_Automata_26__07__2017
                         continue;
                     }
                 }
-                this.estado_aceptacion = null;
-                return false;
+                //this.estado_aceptacion = null;
+                throw new ArgumentException("\nNo se ha encontrado el signo '}' en los estados de aceptacion del automata.\n");
             }
             this.estado_aceptacion = null;
-            return false;
+            throw new ArgumentException("\nHa ocurrido un error inesperado en los estados de aceptacion del automata.\n");
         }
         #endregion
 
