@@ -71,7 +71,7 @@
             this.txt_contenido_documento.Multiline = true;
             this.txt_contenido_documento.Name = "txt_contenido_documento";
             this.txt_contenido_documento.ReadOnly = true;
-            this.txt_contenido_documento.Size = new System.Drawing.Size(291, 512);
+            this.txt_contenido_documento.Size = new System.Drawing.Size(291, 471);
             this.txt_contenido_documento.TabIndex = 2;
             // 
             // label3
@@ -114,7 +114,7 @@
             this.txt_elementos_alfabeto.Multiline = true;
             this.txt_elementos_alfabeto.Name = "txt_elementos_alfabeto";
             this.txt_elementos_alfabeto.ReadOnly = true;
-            this.txt_elementos_alfabeto.Size = new System.Drawing.Size(231, 512);
+            this.txt_elementos_alfabeto.Size = new System.Drawing.Size(231, 471);
             this.txt_elementos_alfabeto.TabIndex = 6;
             this.txt_elementos_alfabeto.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -129,7 +129,7 @@
             this.txt_estados_automata.Multiline = true;
             this.txt_estados_automata.Name = "txt_estados_automata";
             this.txt_estados_automata.ReadOnly = true;
-            this.txt_estados_automata.Size = new System.Drawing.Size(229, 512);
+            this.txt_estados_automata.Size = new System.Drawing.Size(229, 471);
             this.txt_estados_automata.TabIndex = 7;
             this.txt_estados_automata.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -143,14 +143,14 @@
             this.txt_estados_aceptacion.Multiline = true;
             this.txt_estados_aceptacion.Name = "txt_estados_aceptacion";
             this.txt_estados_aceptacion.ReadOnly = true;
-            this.txt_estados_aceptacion.Size = new System.Drawing.Size(201, 512);
+            this.txt_estados_aceptacion.Size = new System.Drawing.Size(201, 471);
             this.txt_estados_aceptacion.TabIndex = 8;
             this.txt_estados_aceptacion.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btn_seleccion_documento
             // 
             this.btn_seleccion_documento.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_seleccion_documento.Location = new System.Drawing.Point(1033, 656);
+            this.btn_seleccion_documento.Location = new System.Drawing.Point(1033, 592);
             this.btn_seleccion_documento.Name = "btn_seleccion_documento";
             this.btn_seleccion_documento.Size = new System.Drawing.Size(136, 45);
             this.btn_seleccion_documento.TabIndex = 9;
@@ -161,7 +161,7 @@
             // btn_salir
             // 
             this.btn_salir.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_salir.Location = new System.Drawing.Point(43, 659);
+            this.btn_salir.Location = new System.Drawing.Point(43, 595);
             this.btn_salir.Name = "btn_salir";
             this.btn_salir.Size = new System.Drawing.Size(142, 38);
             this.btn_salir.TabIndex = 10;
@@ -173,7 +173,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1181, 713);
+            this.ClientSize = new System.Drawing.Size(1181, 649);
             this.Controls.Add(this.btn_salir);
             this.Controls.Add(this.btn_seleccion_documento);
             this.Controls.Add(this.txt_estados_aceptacion);

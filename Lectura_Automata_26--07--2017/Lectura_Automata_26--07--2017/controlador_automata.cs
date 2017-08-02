@@ -99,7 +99,7 @@ namespace Lectura_Automata_26__07__2017
                 ,busca_signo_igual  = true
                 ,inicio_llave       = false;
 
-            foreach(char letra_linea in linea_documento)
+            foreach(Char letra_linea in linea_documento)
             {
                 if (letra_linea == ' ' || letra_linea == '\t')
                 {
@@ -136,12 +136,13 @@ namespace Lectura_Automata_26__07__2017
                 }
                 if(inicio_llave)
                 {
-                    if(letra_linea != ',' && letra_linea != '}' && letra_linea != '\n')
+                    
+                    if(letra_linea != ',' && letra_linea != '}' && letra_linea != 68)
                     {
                         cadena_auxilia += letra_linea;
                         continue;
                     }
-                    else if (letra_linea == '}' || letra_linea == '\n')
+                    else if (letra_linea == '}' || letra_linea == 68)
                     {
                         this.estado_automata.Add(cadena_auxilia);
                         return;
@@ -154,10 +155,10 @@ namespace Lectura_Automata_26__07__2017
                     }
                 }
                 //this.estado_automata = null;
-                throw new ArgumentException("\nNo se ha encontrado el signo '}' en los estados del automata,\n");
+                throw new ArgumentException("\nHa ocurrido un error inesperado en los estados del automata.\n");
             }
-            this.estado_automata = null;
-            throw new ArgumentException("\nHa ocurrido un error inesperado en los estados del automata.\n");
+            //this.estado_automata = null;
+            //throw new ArgumentException("\nNo se ha encontrado el signo '}' en los estados del automata,\n");
         }
         #endregion
 
@@ -207,12 +208,13 @@ namespace Lectura_Automata_26__07__2017
                 }
                 if (inicio_llave)
                 {
-                    if(letra_linea != ',' && letra_linea != '}' && letra_linea != '\n')
+                    Console.WriteLine("Codigo: " + Convert.ToInt32(letra_linea) + " letra: " + letra_linea);
+                    if(letra_linea != ',' && letra_linea != '}' && letra_linea != 68)
                     {
                         cadena_auxilia += letra_linea;
                         continue;
                     }
-                    else if(letra_linea == '}' || letra_linea == '\n')
+                    else if(letra_linea == '}' || letra_linea == 68)
                     {
                         this.elemento_alfabeto.Add(cadena_auxilia);
                         return;
@@ -225,10 +227,10 @@ namespace Lectura_Automata_26__07__2017
                     }
                 }
                 //this.elemento_alfabeto = null;
-                throw new ArgumentException("\nNo se ha encontrado el signo '}' en los elementos del alfabeto.\n");
+                throw new ArgumentException("\nHa ocurrido un error inesperado en durante la lectura de los elementos del alfabeto.\n");
             }
-            this.elemento_alfabeto = null;
-            throw new ArgumentException("\nHa ocurrido un error inesperado en los elementos del alfabeto.\n");
+            //this.elemento_alfabeto = null;
+            //throw new ArgumentException("\nNo se ha encontrado el signo '}' en los elementos del alfabeto.\n");
         }
         #endregion
 
@@ -264,7 +266,7 @@ namespace Lectura_Automata_26__07__2017
                 {
                     if(letra_linea == ',' || letra_linea == '{' || letra_linea == '}')
                     {
-                        throw new ArgumentException("\nSe encontraron signos que no eran pertenecientes al estado inicial del automata.\n");
+                        throw new ArgumentException("\nSe encontraron un signos que no eran pertenecientes al estado inicial del automata.\n");
                     }
                     else
                     {
@@ -323,12 +325,12 @@ namespace Lectura_Automata_26__07__2017
                 }
                 if (inicio_llave)
                 {
-                    if(letra_linea != ',' && letra_linea != '}' && letra_linea != '\n')
+                    if(letra_linea != ',' && letra_linea != '}' && letra_linea != 68)
                     {
                         cadena_auxilia += letra_linea;
                         continue;
                     }
-                    else if(letra_linea == '}' || letra_linea == '\n')
+                    else if(letra_linea == '}' || letra_linea == 68)
                     {
                         this.estado_aceptacion.Add(cadena_auxilia);
                         return;
@@ -341,10 +343,10 @@ namespace Lectura_Automata_26__07__2017
                     }
                 }
                 //this.estado_aceptacion = null;
-                throw new ArgumentException("\nNo se ha encontrado el signo '}' en los estados de aceptacion del automata.\n");
+                //throw new ArgumentException("\nHa ocurrido un error inesperado en los estados de aceptacion del automata.\n");
             }
-            this.estado_aceptacion = null;
-            throw new ArgumentException("\nHa ocurrido un error inesperado en los estados de aceptacion del automata.\n");
+            //this.estado_aceptacion = null;
+            throw new ArgumentException("\nNo se ha encontrado el signo '}' en los estados de aceptacion del automata.\n");
         }
         #endregion
 
