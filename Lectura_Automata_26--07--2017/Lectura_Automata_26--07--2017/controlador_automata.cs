@@ -16,10 +16,13 @@ namespace Lectura_Automata_26__07__2017
         private List<String>            elemento_alfabeto;
         private String                  estado_inicial;
         private List<String>            estado_aceptacion;
+        private List<List<String>>      funcion_transicion;
+        
         private const char              indicador_estado_automata = 'Q';
         private const char              indicador_elemento_alfabeto = 'E';
         private const char              indicador_estado_inicial = 'i';
         private const char              indicador_estado_aceptacion = 'A';
+        private const char              indicador_funcion_transicion = 'w';
         #endregion
 
         public controlador_automata(Icontrolador_documento documento)
@@ -28,6 +31,7 @@ namespace Lectura_Automata_26__07__2017
             this.estado_automata    = null;
             this.elemento_alfabeto  = null;
             this.estado_aceptacion  = null;
+            this.funcion_transicion = null;
             obtener_lineas_documento();
         }
 
@@ -76,6 +80,16 @@ namespace Lectura_Automata_26__07__2017
                     case indicador_estado_aceptacion:
                         {
                             creaEstadosAceptacion(linea_documento);
+                            break;
+                        }
+                    case indicador_funcion_transicion:
+                        {
+                            creaFuncionTransicion(linea_documento);
+                            break;
+                        }
+                    case '(':
+                        {
+                            creaFuncionTransicion(linea_documento);
                             break;
                         }
                     default:
@@ -347,6 +361,55 @@ namespace Lectura_Automata_26__07__2017
             }
             //this.estado_aceptacion = null;
             throw new ArgumentException("\nNo se ha encontrado el signo '}' en los estados de aceptacion del automata.\n");
+        }
+
+        public void creaFuncionTransicion(String linea_transicion)
+        {
+            bool estado_inicial = true
+                ,busca_igual
+                ,comenzar_busqueda = true;
+            this.funcion_transicion = new List<List<String>>();
+            List<String> funcion_auxiliar = new List<String>();
+            if(linea_transicion[0] == '(')
+            {
+                busca_igual = false;
+            }
+            else
+            {
+                busca_igual = true;
+            }
+            foreach(char letra_linea in linea_transicion)
+            {
+                if (estado_inicial)
+                {
+                    continue;
+                }
+                if (busca_igual)
+                {
+                    if (letra_linea == '=')
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        throw new ArgumentException("\nNo se ha encontrado el signo '=' en la esprecion");
+                    }
+                }
+                if (!busca_igual)
+                {
+                    if(letra_linea == '{')
+                    {
+                        continue;
+                    }
+                }
+                if(letra_linea == '(')
+                {
+                    continue;
+                }
+                if(letra_linea != ',' || letra_linea != '(')
+                {
+                }
+            }
         }
         #endregion
 

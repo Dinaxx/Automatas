@@ -11,15 +11,42 @@ namespace Lectura_Automata_26__07__2017
     public partial class fm_Resultado : Form
     {
         private Icontrolador_automata automata;
+        private Icontrolador_documento documento;
 
-        public fm_Resultado(Icontrolador_documento documento)
+        public fm_Resultado()
         {
             InitializeComponent();
-            #region variables
+            
+        }
+
+        public Icontrolador_automata fn_controldor_autoamta
+        {
+            get
+            {
+                return this.automata;
+            }
+            set
+            {
+                this.automata = value;
+            }
+        }
+
+        private void btn_salir_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btn_seleccion_documento_Click(object sender, EventArgs e)
+        {
+            /*this.Visible = false;
+            fm_Inicio form_inicio = new fm_Inicio();
+            form_inicio.Show();*/
             try
             {
+                documento.obtenerDocumentoSelector();
+                txt_nombre_documento.Text = this.documento.NombreDocumento;
                 this.automata = new controlador_automata(documento);
-                #endregion
+
                 using (StreamReader lector = new StreamReader(this.automata.fn_documento.obtenerContenido))
                 {
                     String linea_documento;
@@ -42,42 +69,24 @@ namespace Lectura_Automata_26__07__2017
                         txt_elementos_alfabeto.Text += elementos_alfabeto + Environment.NewLine;
                     }
                 }
-                if(automata.fn_estado_aceptacion != null)
+                if (automata.fn_estado_aceptacion != null)
                 {
-                    foreach(String estados_aceptacion in automata.fn_estado_aceptacion)
+                    foreach (String estados_aceptacion in automata.fn_estado_aceptacion)
                     {
                         txt_estados_aceptacion.Text += estados_aceptacion + Environment.NewLine;
                     }
                 }
             }
-            catch(Exception e)
+            catch (Exception exp)
             {
-                MessageBox.Show("Error: " + e.Message, "Error durante la ejecucion");
+                MessageBox.Show("Error: " + exp.Message, "Error durante la ejecucion");
             }
+
         }
 
-        public Icontrolador_automata fn_controldor_autoamta
+        private void fm_Resultado_Load(object sender, EventArgs e)
         {
-            get
-            {
-                return this.automata;
-            }
-            set
-            {
-                this.automata = value;
-            }
-        }
 
-        private void btn_salir_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void btn_seleccion_documento_Click(object sender, EventArgs e)
-        {
-            this.Visible = false;
-            fm_Inicio form_inicio = new fm_Inicio();
-            form_inicio.Show();
         }
     }
 }
