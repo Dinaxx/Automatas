@@ -134,7 +134,7 @@
             this.txt_contenido_documento.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.txt_contenido_documento.Cursor = System.Windows.Forms.Cursors.No;
             this.txt_contenido_documento.Enabled = false;
-            this.txt_contenido_documento.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_contenido_documento.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_contenido_documento.Location = new System.Drawing.Point(23, 168);
             this.txt_contenido_documento.Multiline = true;
             this.txt_contenido_documento.Name = "txt_contenido_documento";

@@ -424,14 +424,14 @@ namespace Lectura_Automata_26__07__2017
                     funcion_auxiliar.Add(cadena_auxiliar);
                     funcion_transicion.Add(funcion_auxiliar);
                     funcion_auxiliar = new List<string>();
-                    Console.WriteLine("| " + cadena_auxiliar + "| ");
+                    //Console.WriteLine("| " + cadena_auxiliar + "| ");
                     cadena_auxiliar = "";
                     continue;
                 }
                 if(letra_linea == ',')
                 {
                     funcion_auxiliar.Add(cadena_auxiliar);
-                    Console.Write("| " + cadena_auxiliar + "| ");
+                    //Console.Write("| " + cadena_auxiliar + "| ");
                     cadena_auxiliar = "";
                     continue;
                 }

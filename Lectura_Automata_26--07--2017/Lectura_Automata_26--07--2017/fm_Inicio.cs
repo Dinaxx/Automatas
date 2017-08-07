@@ -105,7 +105,7 @@ namespace Lectura_Automata_26__07__2017
                                 if(!inicio && !alfabeto && final)
                                 {
                                     txt_funcion_transicion.Text += String.Format("{0,1} | ", contenido_funcion);
-                                    Console.WriteLine(String.Format("Estado: {0}, Alfabeto: {1}, Resultado: {2}", estado, elemento, contenido_funcion));
+                                    //Console.WriteLine(String.Format("Estado: {0}, Alfabeto: {1}, Resultado: {2}", estado, elemento, contenido_funcion));
                                     break;
                                 }
                             }
