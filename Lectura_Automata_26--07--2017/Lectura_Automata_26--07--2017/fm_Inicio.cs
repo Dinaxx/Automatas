@@ -31,6 +31,14 @@ namespace Lectura_Automata_26__07__2017
             lbl_nombre_documento.Text = this.documento.NombreDocumento;
             this.automata = new controlador_automata(documento);
 
+            #region limpieza de text box
+            txt_contenido_documento.Text    = "";
+            txt_elementos_alfabeto.Text     = "";
+            txt_estados_aceptacion.Text     = "";
+            txt_estados_automata.Text       = "";
+            txt_funcion_transicion.Text     = "";
+            #endregion
+
             using (StreamReader lector = new StreamReader(this.automata.fn_documento.obtenerContenido))
             {
                 String linea_documento;
