@@ -2,3 +2,4 @@ Q={A,B,C}
 E={a,b}
 i=A
 A={C}
+w={(A,a,B),(A,b,A),(B,a,B),(B,b,C),(C,a,A),(C,b,B)}

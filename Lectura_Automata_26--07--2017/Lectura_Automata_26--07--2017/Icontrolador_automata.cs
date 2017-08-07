@@ -14,5 +14,6 @@ namespace Lectura_Automata_26__07__2017
         List<String> fn_elemento_alfabeto { get; set; }
         String fn_estado_inicial { get; set; }
         List<String> fn_estado_aceptacion { get; set; }
+        List<List<string>> fn_funcion_transicion { get; set; }
     }
 }

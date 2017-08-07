@@ -3,6 +3,7 @@
  *  Fecha de creacion: 27-07-2017
  */
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 
@@ -59,7 +60,71 @@ namespace Lectura_Automata_26__07__2017
                     txt_estados_aceptacion.Text += estados_aceptacion + Environment.NewLine;
                 }
             }
+            if(automata.fn_funcion_transicion != null)
+            {
+                String[] elementos_alfabeto = this.automata.fn_elemento_alfabeto.ToArray();
+                String[] estados_automata = this.automata.fn_estado_automata.ToArray();
+                txt_funcion_transicion.Text += String.Format("| {0,2} | ", "  ");
+                foreach (String elemento in elementos_alfabeto)
+                {
+                    txt_funcion_transicion.Text += String.Format("{0,1} | ", elemento);
+                }
+                foreach(String estado in estados_automata)
+                {
+                    txt_funcion_transicion.Text += Environment.NewLine;
+                    txt_funcion_transicion.Text += String.Format("| {0,1} | ", estado);
+                    foreach(String elemento in elementos_alfabeto)
+                    {
+                        foreach(List<String> funciones_transcion in this.automata.fn_funcion_transicion)
+                        {
+                            bool inicio = true
+                            , alfabeto = false
+                            , final = false;
+                            foreach (String contenido_funcion in funciones_transcion)
+                            {
+                                if (inicio)
+                                {
+                                    inicio = false;
+                                    alfabeto = true;
+                                    if(contenido_funcion != estado)
+                                    {
+                                        break;
+                                    }
+                                    continue;
+                                }
+                                if(!inicio && alfabeto)
+                                {
+                                    alfabeto = false;
+                                    final = true;
+                                    if(contenido_funcion != elemento)
+                                    {
+                                        break;
+                                    }
+                                    continue;
+                                }
+                                if(!inicio && !alfabeto && final)
+                                {
+                                    txt_funcion_transicion.Text += String.Format("{0,1} | ", contenido_funcion);
+                                    Console.WriteLine(String.Format("Estado: {0}, Alfabeto: {1}, Resultado: {2}", estado, elemento, contenido_funcion));
+                                    break;
+                                }
+                            }
+                        }
+//                        txt_funcion_transicion.Text += String.Format("{0,1} | ", 'x');
+                    }
+                }
+                /*foreach(List<String> funciones_transicion in automata.fn_funcion_transicion)
+                {
+                    txt_funcion_transicion.Text += "| ";
+                    foreach(String contenido_funcion in funciones_transicion)
+                    {
+                        txt_funcion_transicion.Text += contenido_funcion + " | ";
+                        //txt_funcion_transicion.Text += funcion_transicion;
+                    }
+                    txt_funcion_transicion
+                }*/
+            }
         }
-       
+        
     }
 }

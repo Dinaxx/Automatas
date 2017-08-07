@@ -87,11 +87,6 @@ namespace Lectura_Automata_26__07__2017
                             creaFuncionTransicion(linea_documento);
                             break;
                         }
-                    case '(':
-                        {
-                            creaFuncionTransicion(linea_documento);
-                            break;
-                        }
                     default:
                         {
                             throw new ArgumentException("\nSe ha encontrado un caracter no definido.");
@@ -222,7 +217,7 @@ namespace Lectura_Automata_26__07__2017
                 }
                 if (inicio_llave)
                 {
-                    Console.WriteLine("Codigo: " + Convert.ToInt32(letra_linea) + " letra: " + letra_linea);
+                    //Console.WriteLine("Codigo: " + Convert.ToInt32(letra_linea) + " letra: " + letra_linea);
                     if(letra_linea != ',' && letra_linea != '}' && letra_linea != 68)
                     {
                         cadena_auxilia += letra_linea;
@@ -362,54 +357,91 @@ namespace Lectura_Automata_26__07__2017
             //this.estado_aceptacion = null;
             throw new ArgumentException("\nNo se ha encontrado el signo '}' en los estados de aceptacion del automata.\n");
         }
+        #endregion
 
+        #region control funcion transicion
         public void creaFuncionTransicion(String linea_transicion)
         {
             bool estado_inicial = true
-                ,busca_igual
-                ,comenzar_busqueda = true;
+                , busca_igual = true
+                , comenzar_busqueda = true;
             this.funcion_transicion = new List<List<String>>();
             List<String> funcion_auxiliar = new List<String>();
-            if(linea_transicion[0] == '(')
-            {
-                busca_igual = false;
-            }
-            else
-            {
-                busca_igual = true;
-            }
-            foreach(char letra_linea in linea_transicion)
+            String cadena_auxiliar = "";
+            foreach (char letra_linea in linea_transicion)
             {
                 if (estado_inicial)
                 {
+                    estado_inicial = false;
                     continue;
                 }
                 if (busca_igual)
                 {
                     if (letra_linea == '=')
                     {
+                        busca_igual = false;
                         continue;
                     }
                     else
                     {
-                        throw new ArgumentException("\nNo se ha encontrado el signo '=' en la esprecion");
+                        //throw new ArgumentException("\nNo se ha encontrado el signo '=' en la esprecion");
+                        return;
                     }
                 }
-                if (!busca_igual)
-                {
-                    if(letra_linea == '{')
-                    {
-                        continue;
-                    }
-                }
-                if(letra_linea == '(')
+                if (letra_linea == '{' && !busca_igual)
                 {
                     continue;
                 }
-                if(letra_linea != ',' || letra_linea != '(')
+                if (!busca_igual && comenzar_busqueda)
                 {
+                    if (letra_linea == '(')
+                    {
+                        comenzar_busqueda = false;
+                        continue;
+                    }
+                    else if(letra_linea == ',')
+                    {
+                        continue;
+                    }
+                    else if (letra_linea == '}')
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        //throw new ArgumentException("\nNo se ha encontrado el signo '{' o ',' en la funcion de transicion\n");
+                        return;
+                    }
                 }
+                if (letra_linea != ',' && letra_linea != '(' && letra_linea != '}' && letra_linea != ')')
+                {
+                    cadena_auxiliar += letra_linea;
+                    continue;
+                }
+                if(letra_linea == ')' && !comenzar_busqueda)
+                {
+                    comenzar_busqueda = true;
+                    funcion_auxiliar.Add(cadena_auxiliar);
+                    funcion_transicion.Add(funcion_auxiliar);
+                    funcion_auxiliar = new List<string>();
+                    Console.WriteLine("| " + cadena_auxiliar + "| ");
+                    cadena_auxiliar = "";
+                    continue;
+                }
+                if(letra_linea == ',')
+                {
+                    funcion_auxiliar.Add(cadena_auxiliar);
+                    Console.Write("| " + cadena_auxiliar + "| ");
+                    cadena_auxiliar = "";
+                    continue;
+                }
+                if(letra_linea == '}')
+                {
+                    return;
+                }
+                throw new ArgumentException("\nNo se ha encontrado el signo ')' en la funcion de transicion\n");
             }
+            throw new ArgumentException("\nHa orurrido un error inesperado en la funcion de transicion\n");
         }
         #endregion
 
@@ -467,6 +499,18 @@ namespace Lectura_Automata_26__07__2017
             set
             {
                 this.estado_aceptacion = value;
+            }
+        }
+        
+        public List<List<String>> fn_funcion_transicion
+        {
+            get
+            {
+                return this.funcion_transicion;
+            }
+            set
+            {
+                this.funcion_transicion = value;
             }
         }
         #endregion
