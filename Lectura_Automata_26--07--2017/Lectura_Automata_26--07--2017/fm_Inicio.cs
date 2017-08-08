@@ -70,9 +70,9 @@ namespace Lectura_Automata_26__07__2017
             }
             if(automata.fn_funcion_transicion != null)
             {
-                String[] elementos_alfabeto = this.automata.fn_elemento_alfabeto.ToArray();
-                String[] estados_automata = this.automata.fn_estado_automata.ToArray();
-                txt_funcion_transicion.Text += String.Format("| {0,2} | ", "  ");
+                String[] elementos_alfabeto     = this.automata.fn_elemento_alfabeto.ToArray();
+                String[] estados_automata       = this.automata.fn_estado_automata.ToArray();
+                txt_funcion_transicion.Text     += String.Format("| {0,2} | ", "  ");
                 foreach (String elemento in elementos_alfabeto)
                 {
                     txt_funcion_transicion.Text += String.Format("{0,1} | ", elemento);
@@ -86,13 +86,13 @@ namespace Lectura_Automata_26__07__2017
                         foreach(List<String> funciones_transcion in this.automata.fn_funcion_transicion)
                         {
                             bool inicio = true
-                            , alfabeto = false
-                            , final = false;
+                            , alfabeto  = false
+                            , final     = false;
                             foreach (String contenido_funcion in funciones_transcion)
                             {
                                 if (inicio)
                                 {
-                                    inicio = false;
+                                    inicio   = false;
                                     alfabeto = true;
                                     if(contenido_funcion != estado)
                                     {
@@ -102,8 +102,8 @@ namespace Lectura_Automata_26__07__2017
                                 }
                                 if(!inicio && alfabeto)
                                 {
-                                    alfabeto = false;
-                                    final = true;
+                                    alfabeto    = false;
+                                    final       = true;
                                     if(contenido_funcion != elemento)
                                     {
                                         break;
